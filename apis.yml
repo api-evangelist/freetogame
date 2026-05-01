@@ -7,7 +7,7 @@ type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 created: '2025-02-08'
-modified: '2026-03-16'
+modified: '2026-04-28'
 position: Consumer
 tags:
   - Games
@@ -26,9 +26,13 @@ apis:
     properties:
       - url: https://www.freetogame.com/api-doc
         type: Documentation
+      - url: openapi/freetogame-openapi.yml
+        type: OpenAPI
     description: >-
       The FreeToGame API provides access to a comprehensive database of
-      free-to-play games and free MMO games.
+      free-to-play games and free MMO games. The API is read-only, returns
+      JSON, requires no authentication, and is rate limited to 10 requests
+      per second.
 common:
   - type: Website
     url: https://www.freetogame.com/

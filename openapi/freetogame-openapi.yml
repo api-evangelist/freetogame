@@ -1,0 +1,206 @@
+openapi: 3.0.3
+info:
+  title: FreeToGame API
+  summary: Database of free-to-play games and free MMOs.
+  description: >-
+    The FreeToGame API provides programmatic access to a comprehensive database of
+    free-to-play online games and free MMO games. It exposes endpoints for listing
+    games, retrieving game details, and filtering or sorting games by category,
+    platform, and tag. The API is read-only, requires no authentication, returns
+    JSON responses, and is rate limited to a maximum of 10 requests per second.
+  version: '1.0'
+  contact:
+    name: FreeToGame
+    url: https://www.freetogame.com/api-doc
+  license:
+    name: FreeToGame Terms of Use
+    url: https://www.freetogame.com/terms-of-use
+servers:
+  - url: https://www.freetogame.com/api
+    description: Production
+tags:
+  - name: Games
+    description: Browse and retrieve free-to-play game listings and details.
+paths:
+  /games:
+    get:
+      tags:
+        - Games
+      summary: List Games
+      description: >-
+        Returns a list of all free-to-play games available in the FreeToGame
+        database. Supports optional filtering by platform and category, and
+        sorting by release date, popularity, alphabetical, or relevance.
+      operationId: listGames
+      parameters:
+        - name: platform
+          in: query
+          required: false
+          description: Filter games by platform.
+          schema:
+            type: string
+            enum:
+              - pc
+              - browser
+              - all
+        - name: category
+          in: query
+          required: false
+          description: >-
+            Filter games by genre or category (for example mmorpg, shooter,
+            strategy, moba, racing, sports, social, sandbox, open-world,
+            survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person,
+            third-Person, top-down, tank, space, sailing, side-scroller,
+            superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps,
+            3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action,
+            military, martial-arts, flight, low-spec, tower-defense,
+            horror, mmorts).
+          schema:
+            type: string
+        - name: sort-by
+          in: query
+          required: false
+          description: Sort order for results.
+          schema:
+            type: string
+            enum:
+              - release-date
+              - popularity
+              - alphabetical
+              - relevance
+      responses:
+        '200':
+          description: A list of games.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameSummary'
+        '404':
+          description: No games found matching the filters.
+  /game:
+    get:
+      tags:
+        - Games
+      summary: Get Game
+      description: Returns full details for a specific game by its identifier.
+      operationId: getGame
+      parameters:
+        - name: id
+          in: query
+          required: true
+          description: The unique identifier of the game.
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Game details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GameDetail'
+        '404':
+          description: Game not found.
+  /filter:
+    get:
+      tags:
+        - Games
+      summary: Filter Games
+      description: >-
+        Returns games matching one or more tags combined with an optional
+        platform filter. Tags are joined with periods, for example
+        "3d.mmorpg.fantasy.pvp".
+      operationId: filterGames
+      parameters:
+        - name: tag
+          in: query
+          required: true
+          description: One or more tags joined by periods.
+          schema:
+            type: string
+        - name: platform
+          in: query
+          required: false
+          description: Filter games by platform.
+          schema:
+            type: string
+            enum:
+              - pc
+              - browser
+              - all
+      responses:
+        '200':
+          description: A list of games matching the tag and platform filters.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/GameSummary'
+        '404':
+          description: No games found matching the filters.
+components:
+  schemas:
+    GameSummary:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: Unique game identifier.
+        title:
+          type: string
+        thumbnail:
+          type: string
+          format: uri
+        short_description:
+          type: string
+        game_url:
+          type: string
+          format: uri
+        genre:
+          type: string
+        platform:
+          type: string
+        publisher:
+          type: string
+        developer:
+          type: string
+        release_date:
+          type: string
+          format: date
+        freetogame_profile_url:
+          type: string
+          format: uri
+    GameDetail:
+      allOf:
+        - $ref: '#/components/schemas/GameSummary'
+        - type: object
+          properties:
+            status:
+              type: string
+            description:
+              type: string
+            minimum_system_requirements:
+              type: object
+              properties:
+                os:
+                  type: string
+                processor:
+                  type: string
+                memory:
+                  type: string
+                graphics:
+                  type: string
+                storage:
+                  type: string
+            screenshots:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: integer
+                  image:
+                    type: string
+                    format: uri

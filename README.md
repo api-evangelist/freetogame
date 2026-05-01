@@ -5,9 +5,9 @@ FreeToGame is a platform that offers a wide selection of free-to-play online gam
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consumer 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consumer
+- **Access:** 3rd-Party
 
 ## Tags:
 
@@ -15,16 +15,17 @@ FreeToGame is a platform that offers a wide selection of free-to-play online gam
 
 ## Timestamps
 
-- **Created:** 2025-02-08 
-- **Modified:** 2025-04-07 
+- **Created:** 2025-02-08
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### FreeToGame
-Access programmatically the best free-to-play games and free MMO games! Welcome to the FreeToGame API (Aka The Free-To-Play Games Database API)! This API provides access to a comprehensive database of free-to-play games and free MMO games! You can use this API to retrieve information about free games, such as their title, genre, description and more. 
+The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The API is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
 
-**Human URL:** [ https://www.freetogame.com/api-doc]( https://www.freetogame.com/api-doc)
+**Human URL:** [https://www.freetogame.com/api-doc](https://www.freetogame.com/api-doc)
 
+**Base URL:** `https://www.freetogame.com/api`
 
 #### Tags:
 
@@ -32,11 +33,16 @@ Access programmatically the best free-to-play games and free MMO games! Welcome 
 
 #### Properties
 
-- [Documentation]( https://www.freetogame.com/api-doc)
+- [Documentation](https://www.freetogame.com/api-doc)
+- [OpenAPI](openapi/freetogame-openapi.yml)
+
+## Common Properties
+
+- [Website](https://www.freetogame.com/)
+- [Documentation](https://www.freetogame.com/api-doc)
 
 ## Maintainers
 
 **FN:** Kin Lane
 
-**Email:** info@apievangelist.com
-
+**Email:** kin@apievangelist.com
