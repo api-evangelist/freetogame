@@ -1,0 +1,187 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FreeToGame API
+  description: The FreeToGame API provides programmatic access to a comprehensive database of free-to-play online games and
+    free MMO games. It exposes endpoints for listing games, retrieving game details, and filtering or sorting games by category,
+    platform, and tag. The API is read-only, requires no authentication, returns JSON responses, and is rate limited to a
+    maximum of 10 requests per second.
+  tags:
+  - Freetogame
+  - API
+  created: '2026-05-06'
+  modified: '2026-05-06'
+capability:
+  consumes:
+  - type: http
+    namespace: freetogame
+    baseUri: https://www.freetogame.com/api
+    description: FreeToGame API HTTP API.
+    resources:
+    - name: games
+      path: /games
+      operations:
+      - name: listgames
+        method: GET
+        description: List Games
+        inputParameters:
+        - name: platform
+          in: query
+          type: string
+          description: Filter games by platform.
+        - name: category
+          in: query
+          type: string
+          description: Filter games by genre or category (for example mmorpg, shooter, strategy, moba, racing, sports, social,
+            sandbox, open-world, survival, pvp, pve, pixel, voxel, z
+        - name: sort-by
+          in: query
+          type: string
+          description: Sort order for results.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: game
+      path: /game
+      operations:
+      - name: getgame
+        method: GET
+        description: Get Game
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          required: true
+          description: The unique identifier of the game.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: filter
+      path: /filter
+      operations:
+      - name: filtergames
+        method: GET
+        description: Filter Games
+        inputParameters:
+        - name: tag
+          in: query
+          type: string
+          required: true
+          description: One or more tags joined by periods.
+        - name: platform
+          in: query
+          type: string
+          description: Filter games by platform.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    port: 8080
+    namespace: freetogame-rest
+    description: REST adapter for FreeToGame API.
+    resources:
+    - path: /games
+      name: listgames
+      operations:
+      - method: GET
+        name: listgames
+        description: List Games
+        call: freetogame.listgames
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /game
+      name: getgame
+      operations:
+      - method: GET
+        name: getgame
+        description: Get Game
+        call: freetogame.getgame
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /filter
+      name: filtergames
+      operations:
+      - method: GET
+        name: filtergames
+        description: Filter Games
+        call: freetogame.filtergames
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    port: 9090
+    namespace: freetogame-mcp
+    transport: http
+    description: MCP adapter for FreeToGame API for AI agent use.
+    tools:
+    - name: listgames
+      description: List Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame.listgames
+      with:
+        platform: tools.platform
+        category: tools.category
+        sort-by: tools.sort-by
+      inputParameters:
+      - name: platform
+        type: string
+        description: Filter games by platform.
+      - name: category
+        type: string
+        description: Filter games by genre or category (for example mmorpg, shooter, strategy, moba, racing, sports, social,
+          sandbox, open-world, survival, pvp, pve, pixel, voxel, z
+      - name: sort-by
+        type: string
+        description: Sort order for results.
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: getgame
+      description: Get Game
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame.getgame
+      with:
+        id: tools.id
+      inputParameters:
+      - name: id
+        type: integer
+        description: The unique identifier of the game.
+        required: true
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: filtergames
+      description: Filter Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame.filtergames
+      with:
+        tag: tools.tag
+        platform: tools.platform
+      inputParameters:
+      - name: tag
+        type: string
+        description: One or more tags joined by periods.
+        required: true
+      - name: platform
+        type: string
+        description: Filter games by platform.
+      outputParameters:
+      - type: object
+        mapping: $.
