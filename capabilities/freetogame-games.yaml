@@ -1,0 +1,179 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: FreeToGame API — Games
+  description: 'FreeToGame API — Games. 3 operations. Lead operation: Filter Games. Self-contained Naftiko capability covering
+    one Freetogame business surface.'
+  tags:
+  - Freetogame
+  - Games
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    FREETOGAME_API_KEY: FREETOGAME_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: freetogame-games
+    baseUri: https://www.freetogame.com/api
+    description: FreeToGame API — Games business capability. Self-contained, no shared references.
+    resources:
+    - name: filter
+      path: /filter
+      operations:
+      - name: filtergames
+        method: GET
+        description: Filter Games
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tag
+          in: query
+          type: string
+          description: One or more tags joined by periods.
+          required: true
+        - name: platform
+          in: query
+          type: string
+          description: Filter games by platform.
+    - name: game
+      path: /game
+      operations:
+      - name: getgame
+        method: GET
+        description: Get Game
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: query
+          type: integer
+          description: The unique identifier of the game.
+          required: true
+    - name: games
+      path: /games
+      operations:
+      - name: listgames
+        method: GET
+        description: List Games
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: platform
+          in: query
+          type: string
+          description: Filter games by platform.
+        - name: category
+          in: query
+          type: string
+          description: Filter games by genre or category (for example mmorpg, shooter, strategy, moba, racing, sports, social,
+            sandbox, open-world, survival, pvp, pve, pixel, voxel, z
+        - name: sort-by
+          in: query
+          type: string
+          description: Sort order for results.
+  exposes:
+  - type: rest
+    namespace: freetogame-games-rest
+    port: 8080
+    description: REST adapter for FreeToGame API — Games. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/filter
+      name: filter
+      description: REST surface for filter.
+      operations:
+      - method: GET
+        name: filtergames
+        description: Filter Games
+        call: freetogame-games.filtergames
+        with:
+          tag: rest.tag
+          platform: rest.platform
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/game
+      name: game
+      description: REST surface for game.
+      operations:
+      - method: GET
+        name: getgame
+        description: Get Game
+        call: freetogame-games.getgame
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/games
+      name: games
+      description: REST surface for games.
+      operations:
+      - method: GET
+        name: listgames
+        description: List Games
+        call: freetogame-games.listgames
+        with:
+          platform: rest.platform
+          category: rest.category
+          sort-by: rest.sort-by
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: freetogame-games-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for FreeToGame API — Games. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: filter-games
+      description: Filter Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame-games.filtergames
+      with:
+        tag: tools.tag
+        platform: tools.platform
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-game
+      description: Get Game
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame-games.getgame
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-games
+      description: List Games
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: freetogame-games.listgames
+      with:
+        platform: tools.platform
+        category: tools.category
+        sort-by: tools.sort-by
+      outputParameters:
+      - type: object
+        mapping: $.
