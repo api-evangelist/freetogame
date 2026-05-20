@@ -8,34 +8,36 @@ created: '2025-02-08'
 modified: '2026-05-19'
 position: Consumer
 tags:
-- Games
-- Gaming
+  - Games
+  - Gaming
 url: https://raw.githubusercontent.com/api-evangelist/freetogame/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-- aid: freetogame:freetogame
-  name: FreeToGame
-  tags:
-  - Games
-  - Gaming
-  humanURL: https://www.freetogame.com/api-doc
-  baseURL: https://www.freetogame.com/api
-  properties:
-  - url: https://www.freetogame.com/api-doc
-    type: Documentation
-  - url: openapi/freetogame-openapi.yml
-    type: OpenAPI
-  - type: NaftikoCapability
-    url: capabilities/freetogame-games.yaml
-  description: The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The
-    API is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
+  - aid: freetogame:freetogame
+    name: FreeToGame
+    tags:
+    - Games
+    - Gaming
+    humanURL: https://www.freetogame.com/api-doc
+    baseURL: https://www.freetogame.com/api
+    properties:
+    - url: https://www.freetogame.com/api-doc
+      type: Documentation
+    - url: openapi/freetogame-openapi.yml
+      type: OpenAPI
+    - type: NaftikoCapability
+      url: capabilities/freetogame-games.yaml
+    description: The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The
+      API is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
 common:
-- type: LinkedIn
-  url: https://www.linkedin.com/company/freetogame
-- type: Website
-  url: https://www.freetogame.com/
-- type: Documentation
-  url: https://www.freetogame.com/api-doc
+  - type: GitHubOrganization
+    url: https://github.com/FreeToGame
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/freetogame
+  - type: Website
+    url: https://www.freetogame.com/
+  - type: Documentation
+    url: https://www.freetogame.com/api-doc
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
