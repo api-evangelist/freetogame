@@ -16,19 +16,18 @@ apis:
   - aid: freetogame:freetogame
     name: FreeToGame
     tags:
-    - Games
-    - Gaming
+      - Games
+      - Gaming
     humanURL: https://www.freetogame.com/api-doc
     baseURL: https://www.freetogame.com/api
     properties:
-    - url: https://www.freetogame.com/api-doc
-      type: Documentation
-    - url: openapi/freetogame-openapi.yml
-      type: OpenAPI
-    - type: NaftikoCapability
-      url: capabilities/freetogame-games.yaml
-    description: The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The
-      API is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
+      - url: https://www.freetogame.com/api-doc
+        type: Documentation
+      - url: openapi/freetogame-openapi.yml
+        type: OpenAPI
+    description: >-
+      The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The API
+      is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
 common:
   - type: GitHubOrganization
     url: https://github.com/FreeToGame
