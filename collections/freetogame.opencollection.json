@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "FreeToGame API",
+    "version": "1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Games",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.freetogame.com/api/games",
+            "params": [
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Filter games by platform."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Filter games by genre or category (for example mmorpg, shooter, strategy, moba, racing, sports, social, sandbox, open-world, survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps, 3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, mmorts)."
+              },
+              {
+                "name": "sort-by",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results."
+              }
+            ]
+          },
+          "docs": "Returns a list of all free-to-play games available in the FreeToGame database. Supports optional filtering by platform and category, and sorting by release date, popularity, alphabetical, or relevance."
+        },
+        {
+          "info": {
+            "name": "Get Game",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.freetogame.com/api/game",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The unique identifier of the game."
+              }
+            ]
+          },
+          "docs": "Returns full details for a specific game by its identifier."
+        },
+        {
+          "info": {
+            "name": "Filter Games",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.freetogame.com/api/filter",
+            "params": [
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "One or more tags joined by periods."
+              },
+              {
+                "name": "platform",
+                "value": "",
+                "type": "query",
+                "description": "Filter games by platform."
+              }
+            ]
+          },
+          "docs": "Returns games matching one or more tags combined with an optional platform filter. Tags are joined with periods, for example \"3d.mmorpg.fantasy.pvp\"."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
