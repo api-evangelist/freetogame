@@ -29,6 +29,8 @@ apis:
       The FreeToGame API provides access to a comprehensive database of free-to-play games and free MMO games. The API
       is read-only, returns JSON, requires no authentication, and is rate limited to 10 requests per second.
 common:
+  - type: AgenticAccess
+    url: agentic-access/freetogame-agentic-access.yml
   - type: DomainSecurity
     url: security/freetogame-domain-security.yml
   - type: GitHubOrganization
