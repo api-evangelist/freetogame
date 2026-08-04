@@ -1,0 +1,14 @@
+{
+  "provider": "freetogame",
+  "sources": [
+    "freetogame-games-api-openapi.yml"
+  ],
+  "outputs": [
+    "freetogame-games-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
