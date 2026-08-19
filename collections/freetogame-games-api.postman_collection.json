@@ -1,0 +1,422 @@
+{
+  "item": [
+    {
+      "id": "3603f471-870c-46ee-9b5f-33e34d94aa00",
+      "name": "Games",
+      "description": {
+        "content": "Browse and retrieve free-to-play game listings and details.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed722ba9-2b4b-4741-b190-f32100bf246f",
+          "name": "List Games",
+          "request": {
+            "name": "List Games",
+            "description": {
+              "content": "Returns a list of all free-to-play games available in the FreeToGame database. Supports optional filtering by platform and category, and sorting by release date, popularity, alphabetical, or relevance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "games"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter games by platform."
+                },
+                {
+                  "disabled": false,
+                  "key": "category",
+                  "value": "<string>",
+                  "description": "Filter games by genre or category (for example mmorpg, shooter, strategy, moba, racing, sports, social, sandbox, open-world, survival, pvp, pve, pixel, voxel, zombie, turn-based, first-person, third-Person, top-down, tank, space, sailing, side-scroller, superhero, permadeath, card, battle-royale, mmo, mmofps, mmotps, 3d, 2d, anime, fantasy, sci-fi, fighting, action-rpg, action, military, martial-arts, flight, low-spec, tower-defense, horror, mmorts)."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort-by",
+                  "value": "<string>",
+                  "description": "Sort order for results."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8231f6f-73c9-4847-a4e7-9153d78ec9dc",
+              "name": "A list of games.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort-by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 464,\n    \"title\": \"string\",\n    \"thumbnail\": \"https://tUFEZlvQDSaZjNwhTAvxfpbZax.imtCQDXs-CKZoEitofMUGOJzyP0UAEF\",\n    \"short_description\": \"string\",\n    \"game_url\": \"http://YDEspujIgilHlWYmvOu.icjzHxsp-9fjXb2gxQmQlQuh\",\n    \"genre\": \"string\",\n    \"platform\": \"string\",\n    \"publisher\": \"string\",\n    \"developer\": \"string\",\n    \"release_date\": \"2014-10-25\",\n    \"freetogame_profile_url\": \"https://mxNpm.mihANqL6lgB-tz7oim4,ZC\"\n  },\n  {\n    \"id\": 7172,\n    \"title\": \"string\",\n    \"thumbnail\": \"http://znpLLUiLub.ddVWHapX9IfkqBn4q\",\n    \"short_description\": \"string\",\n    \"game_url\": \"http://QwSBEoWhGgUZAjajNjB.irgdw35Tg-ulHJ.firKhlKvSW1Q-AacEzs7wntGewA61woi,cGoIru5tO3\",\n    \"genre\": \"string\",\n    \"platform\": \"string\",\n    \"publisher\": \"string\",\n    \"developer\": \"string\",\n    \"release_date\": \"1964-02-06\",\n    \"freetogame_profile_url\": \"http://lzrzWhdYcI.ptjiRDRnI19t\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6c46589b-1dc7-48cb-a35a-70e9dc8512f4",
+              "name": "No games found matching the filters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "games"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "category",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort-by",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6969925c-e099-4218-97fb-4995d9d4e7bd",
+          "name": "Get Game",
+          "request": {
+            "name": "Get Game",
+            "description": {
+              "content": "Returns full details for a specific game by its identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "game"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>",
+                  "description": "(Required) The unique identifier of the game."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e7162a7-95b2-4b2b-b4ec-bdff05b0947a",
+              "name": "Game details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "game"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 5305,\n  \"title\": \"string\",\n  \"thumbnail\": \"http://b.xtZmE-TZCKgmeXjVnWkYEqgcomNNWf9urFSH\",\n  \"short_description\": \"string\",\n  \"game_url\": \"http://dABFWtHryffPxakYaImdiADPRKxM.unihiHLaOQ2GdbQP0oxLD.ut95p6Ffu6TGJaCVdtuUZcXw-Arp\",\n  \"genre\": \"string\",\n  \"platform\": \"string\",\n  \"publisher\": \"string\",\n  \"developer\": \"string\",\n  \"release_date\": \"2018-07-29\",\n  \"freetogame_profile_url\": \"https://fqhhFfuvvABppmkqdjmqdKimAjoKaay.pipdZ9XF\",\n  \"status\": \"string\",\n  \"description\": \"string\",\n  \"minimum_system_requirements\": {\n    \"os\": \"string\",\n    \"processor\": \"string\",\n    \"memory\": \"string\",\n    \"graphics\": \"string\",\n    \"storage\": \"string\"\n  },\n  \"screenshots\": [\n    {\n      \"id\": 6551,\n      \"image\": \"https://qLdBpjEIBhKbAXgpHIqYoPtM.olhqsufG4MuLR+tK7eirS.f5xpq5K3ThTTEjYS2wGKE8t4j.vTtVltnFAbUA2dOQ9I224Um34Dz0gUbFV\"\n    },\n    {\n      \"id\": 5811,\n      \"image\": \"https://JAoJREfFHHeDwYcbvJyCSb.iyivg14q7sVvo2lrY3dmPyBrv8crFZP9B9qUuD,5.x0B74lEsSzWvQSjXhfnYHgf\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b06b1940-e5a5-4365-acff-891058609553",
+              "name": "Game not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "game"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4495fa53-438b-49ec-8d5f-63011617693a",
+          "name": "Filter Games",
+          "request": {
+            "name": "Filter Games",
+            "description": {
+              "content": "Returns games matching one or more tags combined with an optional platform filter. Tags are joined with periods, for example \"3d.mmorpg.fantasy.pvp\".",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "filter"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "(Required) One or more tags joined by periods."
+                },
+                {
+                  "disabled": false,
+                  "key": "platform",
+                  "value": "<string>",
+                  "description": "Filter games by platform."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba077187-5625-4a21-bd54-7cbb128907c8",
+              "name": "A list of games matching the tag and platform filters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 464,\n    \"title\": \"string\",\n    \"thumbnail\": \"https://tUFEZlvQDSaZjNwhTAvxfpbZax.imtCQDXs-CKZoEitofMUGOJzyP0UAEF\",\n    \"short_description\": \"string\",\n    \"game_url\": \"http://YDEspujIgilHlWYmvOu.icjzHxsp-9fjXb2gxQmQlQuh\",\n    \"genre\": \"string\",\n    \"platform\": \"string\",\n    \"publisher\": \"string\",\n    \"developer\": \"string\",\n    \"release_date\": \"2014-10-25\",\n    \"freetogame_profile_url\": \"https://mxNpm.mihANqL6lgB-tz7oim4,ZC\"\n  },\n  {\n    \"id\": 7172,\n    \"title\": \"string\",\n    \"thumbnail\": \"http://znpLLUiLub.ddVWHapX9IfkqBn4q\",\n    \"short_description\": \"string\",\n    \"game_url\": \"http://QwSBEoWhGgUZAjajNjB.irgdw35Tg-ulHJ.firKhlKvSW1Q-AacEzs7wntGewA61woi,cGoIru5tO3\",\n    \"genre\": \"string\",\n    \"platform\": \"string\",\n    \"publisher\": \"string\",\n    \"developer\": \"string\",\n    \"release_date\": \"1964-02-06\",\n    \"freetogame_profile_url\": \"http://lzrzWhdYcI.ptjiRDRnI19t\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2c92e62d-04ac-4bb9-90b0-24dc40bee7e7",
+              "name": "No games found matching the filters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "filter"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "platform",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.freetogame.com/api",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a33feca7-4d50-470a-a7fd-dcee263ca3ee",
+    "name": "FreeToGame Games API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The FreeToGame API provides programmatic access to a comprehensive database of free-to-play online games and free MMO games. It exposes endpoints for listing games, retrieving game details, and filtering or sorting games by category, platform, and tag. The API is read-only, requires no authentication, returns JSON responses, and is rate limited to a maximum of 10 requests per second.\n\nContact Support:\n Name: FreeToGame",
+      "type": "text/plain"
+    }
+  }
+}
