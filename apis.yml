@@ -28,7 +28,7 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/freetogame.png
 access: 3rd-Party
 created: '2025-02-08'
-modified: '2026-05-19'
+modified: '2026-10-06'
 position: Consuming
 tags:
   - Games
@@ -49,6 +49,8 @@ apis:
   - type: Documentation
     url: https://www.freetogame.com/api-doc
 common:
+  - url: https://www.freetogame.com/rss/games
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/freetogame-agentic-access.yml
   - type: DomainSecurity
