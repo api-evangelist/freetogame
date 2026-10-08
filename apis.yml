@@ -49,6 +49,12 @@ apis:
   - type: Documentation
     url: https://www.freetogame.com/api-doc
 common:
+  - type: Plans
+    url: plans/freetogame-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/freetogame-rate-limits.yml
+  - type: FinOps
+    url: finops/freetogame-finops.yml
   - url: https://www.freetogame.com/rss/games
     type: BlogRSS
   - type: AgenticAccess
